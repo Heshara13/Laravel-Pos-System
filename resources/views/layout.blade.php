@@ -19,7 +19,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Category</a>
+                    <a class="nav-link active" aria-current="page" href="{{url('/category')}}">Category</a>
                     <a class="nav-link active" aria-current="page" href="#">Brand</a>
                     <a class="nav-link active" aria-current="page" href="#">Product</a>
                     <a class="nav-link active" aria-current="page" href="#">Sales</a>

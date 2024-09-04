@@ -16,7 +16,7 @@ class CategoryController extends Controller
 
     public function index(){
         $response['categories'] = $this->category->all();
-        return view('pages.index')->with($response);
+        return view('category.index')->with($response);
     }
 
     public function store(Request $request){

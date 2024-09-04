@@ -1,30 +1,30 @@
 @extends('layout')  
 @section('content')
 <div class="container">
-        <h3 align="center" class="mt-5">Employee Management</h3>
+        <h3 align="center" class="mt-5">Category</h3>
         <div class="row">
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
             <div class="form-area">
-                <form method="POST" action="{{ route('employee.store') }}">
+                <form method="POST" action="{{ route('category.store') }}">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Employee Name</label>
-                            <input type="text" class="form-control" name="emp_name">
+                            <label>Category Name</label>
+                            <input type="text" class="form-control" name="cat_name">
                         </div>
                         <div class="col-md-6">
-                            <label>Employee DOB</label>
-                            <input type="date" class="form-control" name="dob">
+                            <label>Status</label>
+                            <select class="form-control" name="status">
+                                <option selected>select menu</option>
+                                <option value="1">True</option>
+                                <option value="2">False</option>
+                            </select>
+                            
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" name="phone">
-                        </div>
-                    </div>
+                   
                     <div class="row">
                         <div class="col-md-12 mt-3">
                             <input type="submit" class="btn btn-primary" value="Register">
@@ -36,27 +36,33 @@
                     <thead>
                       <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Employee Name</th>
-                        <th scope="col">DOB</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">Category Name</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                        @foreach ( $employees as $key => $employee )
+                        @foreach ( $categories as $key => $category )
                         <tr>
                             <td scope="col">{{ ++$key }}</td>
-                            <td scope="col">{{ $employee->emp_name }}</td>
-                            <td scope="col">{{ $employee->dob }}</td>
-                            <td scope="col">{{ $employee->phone }}</td>
+                            <td scope="col">{{ $category->cat_name }}</td>
                             <td scope="col">
-                            <a href="{{  route('employee.edit', $employee->id) }}">
+                                @if($category->status == 1)
+                                    true
+                                @else
+                                    false
+                                @endif
+                            </td>
+                            
+                            
+                            <td scope="col">
+                            <a href="{{  route('category.edit', $category->id) }}">
                             <button class="btn btn-primary btn-sm">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
                             </button>
                             </a>
                             
-                            <form action="{{ route('employee.destroy', $employee->id) }}" method="POST" style ="display:inline">
+                            <form action="{{ route('category.destroy', $category->id) }}" method="POST" style ="display:inline">
                              @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
