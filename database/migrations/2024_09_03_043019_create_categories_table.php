@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('catname');
+            $table->string('catname')->default('Default Category Name')->change();
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

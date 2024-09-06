@@ -20,7 +20,27 @@ class CategoryController extends Controller
     }
 
     public function store(Request $request){
-        $this->category->create($request->all());
-        return redirect()->back();
-}
+    $data = $request->all();
+    $data['catname'] = $data['catname'] ?? 'Default Category Name';
+
+    $this->category->create($data);
+
+    return redirect()->back();
+    }
+
+    public function edit(string $id){
+        $response['category'] = $this->category->find($id);
+        return view('category.edit')->with($response);
+    }
+
+    public function update(Request $request, string $id){
+        $category = $this->category->find($id);
+        $category->update(array_merge($category->toArray(), $request->toArray()));
+        return redirect('category')->with('success', 'Category updated successfully');
+    }
+
+    public function destroy(string $id){
+        $this->category->find($id)->delete();
+        return redirect('category')->with('success', 'Category deleted successfully');
+    }
 }

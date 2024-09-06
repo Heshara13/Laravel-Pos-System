@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Category Name</label>
-                            <input type="text" class="form-control" name="cat_name">
+                            <input type="text" class="form-control" name="catname">
                         </div>
                         <div class="col-md-6">
                             <label>Status</label>
@@ -45,7 +45,7 @@
                         @foreach ( $categories as $key => $category )
                         <tr>
                             <td scope="col">{{ ++$key }}</td>
-                            <td scope="col">{{ $category->cat_name }}</td>
+                            <td scope="col">{{ $category->catname }}</td>
                             <td scope="col">
                                 @if($category->status == 1)
                                     true
